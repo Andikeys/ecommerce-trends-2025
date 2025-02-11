@@ -1,14 +1,15 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
 const PORT = 2000;
 
-// Serve static files (images, CSS)
+// Serve static files (CSS, images, etc.)
 app.use(express.static(__dirname));
 
-// Home route
+// Correctly resolve the absolute path for index.html
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {
